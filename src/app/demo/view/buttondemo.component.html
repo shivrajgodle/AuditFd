@@ -1,0 +1,55 @@
+<p-card>
+    <!-- <p-messages [(value)]="msgs"></p-messages> -->
+    <ng-template pTemplate="title">
+        Audit Report
+    </ng-template>
+    <ng-template pTemplate="subtitle">
+        Create Project
+    </ng-template>
+    <!-- <span style="color: red;">{{errorMsg}}</span> -->
+    <ng-template pTemplate="content">
+        <form [formGroup]="projectForm">
+            <div class="p-fluid">
+                <div class="p-field">
+                  
+                    <label for="projectCode">Project Code</label>
+                    <input pInputText type="text" id="projectCode" name="projectCode" formControlName="projectCode"><br>
+                    <small *ngIf="!projectForm.get('projectCode')?.valid && projectForm.get('projectCode')?.touched">
+                    <span style="color:red;" *ngIf="projectForm.get('projectCode')?.errors?.['required']">
+                        Please enter valid project code.
+                    </span>
+                <span style="color:red;" *ngIf="projectForm.get('projectCode')?.errors?.['projectCode']">
+                        Please enter valid project Code. 
+                    </span>
+                </small>
+                </div>
+                <br>
+                <div class="p-field">
+                    <label for="taskCode">Task Code</label>
+                    <input pInputText type="taskCode" name="taskCode" formControlName="taskCode"><br>
+                    <small *ngIf="!projectForm.get('taskCode')?.valid && projectForm.get('taskCode')?.touched">
+                    <span style="color:red;" *ngIf="projectForm.get('taskCode')?.errors?.['required']">
+                        Please enter valid Task Code
+                    </span>
+                    <span style="color:red;" *ngIf="projectForm.get('taskCode')?.errors?.['minlength'] || projectForm.get('taskCode')?.errors?.['maxlength']">
+                        Please enter valid Task Code
+                    </span>
+                </small>
+                </div>
+            </div>
+        </form>
+
+    </ng-template>
+
+    <p-divider></p-divider>
+
+    <ng-template pTemplate="footer" class="footer" >
+        <div style="margin-bottom: 30px; text-align: center;">
+
+            <button pButton class="button-icon-text" aria-label="Login" (click)="onSave()" [disabled]="!projectForm.valid">
+                <span style="text-align: center;">Save</span>
+            </button>
+        </div>
+    </ng-template>
+</p-card>
+<br>
